@@ -1,0 +1,54 @@
+{
+    "name": "pen-y-fan/laravel-setup",
+    "description": "Package to standardise the setup of a Laravel project",
+    "keywords": [
+        "pen-y-fan",
+        "laravel-setup"
+    ],
+    "homepage": "https://github.com/pen-y-fan/laravel-setup",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Michael Pritchard",
+            "email": "michael.pen.y.fan@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PenYFan\\LaravelSetup\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PenYFan\\LaravelSetup\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "PenYFan\\LaravelSetup\\LaravelSetupServiceProvider"
+            ],
+            "aliases": {
+                "LaravelSetup": "PenYFan\\LaravelSetup\\LaravelSetupFacade"
+            }
+        }
+    }
+}
