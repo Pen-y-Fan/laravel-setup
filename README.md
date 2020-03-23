@@ -6,33 +6,29 @@
 The package is currently under development. 
 
 The concept: 
-1. Create a new laravel project as normal.
-2. Require this package to automatically install code quality and static analysis tools along with basic
- configuration files.
+1. Create a new laravel project as normal `laravel new project-name`.
+2. Require this package, as a dev dependency, to automatically install code quality and static analysis tools along
+ with basic configuration files for the Laravel project.
 
 ## Installation
 
-To be confirmed (TBC).
-
-<!--
-You can install the package via composer:
+**Once developed**, the plan is you can install the package via composer:
 
 ```bash
-composer require pen-y-fan/laravel-setup
+composer require -dev pen-y-fan/laravel-setup
 ```
--->
 
 ## Usage
 
 The plan is to automatically run the required script, when initially required:
 
 1. Run a default installation of each of the static analysis and code quality tools, including helpers
-2. Copy a default configuration script for each tool.
-3. On Windows create a batch file.
+2. Copy a default configuration file, phpstan.neon and esc.yml, for each tool.
+3. On Windows create a batch files (details below)
 
-The code quality and static analysis tools being planned are:
+The code quality, static analysis and testing tools being planned are:
 
-* PHPStan
+* PHPStan with  phpstan.neon and 
 * Easy Coding Standard (ECS)
 * PHPUnit (normally already included with Laravel)
 * PHP CodeSniffer (optional to ECS)
@@ -57,14 +53,15 @@ The **composer.jason** will have the following added:
         "tests": "phpunit",
         "check-cs": "ecs check src tests --ansi",
         "fix-cs": "ecs check src tests --fix --ansi",
-        "phpstan": "phpstan analyse src tests --ansi --error-format symplify"
+        "phpstan": "phpstan analyse app tests --ansi --error-format symplify"
     }
 }
 ```
 
 ### Windows batch files
 
-On Windows OS batch files to allow scripts to be easily run from the command line. Similar to the bash alias.
+On Windows OS batch files to allow scripts to be easily run from the command line will be added to the project root.
+ Similar to the bash alias.
 
 #### `pu.bat`
 
@@ -86,13 +83,15 @@ Win run the script `composer phpstan`, which will run static analysis using PHPS
 
 To run PHP CodeSniffer.
  
-To check code to PSR-12 fig standard:
+To check code to PSR-12 extended coding style:
+
+**TODO**: Find Laravel coding style
 
 ```bat
 composer checkcode
 ```
 
-To fix code to PSR-12 fig standard:
+To fix code to PSR-12 extended coding style:
 
 ```bat
 composer fixcode
@@ -100,12 +99,9 @@ composer fixcode
 
 ## Testing
 
-TBC.
-<!--
 ```bash
 composer test
 ```
--->
 
 ## Changelog
 
@@ -115,6 +111,21 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
+## TODO
+
+Plans for the future development of the project. Static analysis and code quality tools are abbreviated to **tool**
+
+- [ ] Create a proof of concept for a new Laravel project with static analysis and code quality tool and basic config
+ files.
+  - [ ] The installer will examine the composer.json and automatically install the tool based on the package's PHP
+   version.
+  - [ ] Allow the latest version of the tool to be installed, which may force a newer PHP version
+- [ ] Create an artisan command line tool to up issue the required tools or install different tools.
+- [ ] Expand the concept to other frameworks (Symfony, Slim, CodeIgnite, vanilla (other)) with their basic config files
+- [ ] Expand the concept foe existing projects, which may already have some tools, but may want to standardise.
+- [ ] Add more choice of tools and configs: Psalm, Phan, PHP Insights, Rector. PHP Code Style Fixer (PHP CS Fixer)
+  - [ ] Automatically set the level for static analysis, start at level 0 and increase until errors are found.
+
 ### Security
 
 If you discover any security related issues, please email michael.pen.y.fan@gmail.com instead of using the issue tracker.
@@ -122,7 +133,8 @@ If you discover any security related issues, please email michael.pen.y.fan@gmai
 ## Credits
 
 * [Michael Pritchard](https://github.com/pen-y-fan)
-* Concept based on a this blog [5 Things I Improve when I Get to new Repository](https://www.tomasvotruba.com/blog/2019/12/23/5-things-i-improve-when-i-get-to-new-repository/)
+* Concept based on this blog [5 Things I Improve when I Get to new Repository](https://www.tomasvotruba.com/blog/2019/12/23/5-things-i-improve-when-i-get-to-new-repository/) by Tom Asvotruba
+* Further inspiration from this blog [A few tips on how to keep your PHP code style under control](https://tsh.io/blog/tips-on-keeping-php-code-under-control/) by Jarosław Jakubowski
 
 ## License
 
